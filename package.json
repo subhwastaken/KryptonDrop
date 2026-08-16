@@ -47,7 +47,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "playwright-core": "^1.60.0",
-    "solc": "^0.8.36",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

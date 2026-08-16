@@ -9,6 +9,7 @@
  *
  * Requires:
  *   DEMO_AGENT1_PK (or NFT_MINTER_PK) in .env — must have MON for gas.
+ *   Local only: `pnpm add -D solc` (not installed in the Vercel Next.js build).
  */
 
 import { readFileSync } from "fs";
