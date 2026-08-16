@@ -16,9 +16,12 @@
 | Component | Value |
 |---|---|
 | **Platform Name** | KryptonDrop |
+| **Public repo** | [github.com/subhwastaken/KryptonDrop](https://github.com/subhwastaken/KryptonDrop) |
 | **Network** | Monad Testnet (Chain ID `10143`) |
 | **RPC Endpoint** | `https://testnet-rpc.monad.xyz` |
 | **Monad Explorer** | `https://testnet.monadexplorer.com` |
+| **ComputeClaimNFT** | [`0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64`](https://testnet.monadscan.com/address/0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64) |
+| **MonadScan (live contract page)** | [testnet.monadscan.com/address/0x7af7C765…b35bCb64](https://testnet.monadscan.com/address/0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64) |
 | **MCP Server Route** | `http://localhost:3000/api/mcp` (or deployed URL `/api/mcp`) |
 | **MCP Available Tools** | `list_drops`, `get_drop_info`, `enter_draw`, `check_status`, `purchase`, `set_agent_strategy`, `get_active_listings` |
 

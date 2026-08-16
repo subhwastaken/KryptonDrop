@@ -8,18 +8,55 @@ KryptonDrop is a high-performance, bot-proof trustless per-second GPU compute re
 
 ---
 
+## 🌐 Live public page & deployed contract
+
+| | |
+| :--- | :--- |
+| **Public repository (source of truth)** | [github.com/subhwastaken/KryptonDrop](https://github.com/subhwastaken/KryptonDrop) |
+| **Local app** | [http://localhost:3000](http://localhost:3000) after `pnpm dev` |
+| **A2A marketplace (local)** | [http://localhost:3000/marketplace](http://localhost:3000/marketplace) |
+| **MCP HTTP endpoint (local)** | [http://localhost:3000/api/mcp](http://localhost:3000/api/mcp) |
+
+### ComputeClaimNFT (Monad Testnet)
+
+On-chain ERC-721 for GPU compute claim vouchers. Verified live via `eth_getCode` / `name()` on `https://testnet-rpc.monad.xyz` (bytecode present; token name **KryptonDrop Compute Claim**).
+
+| Field | Value |
+| :--- | :--- |
+| **Network** | Monad Testnet |
+| **Chain ID** | `10143` |
+| **RPC** | `https://testnet-rpc.monad.xyz` |
+| **Contract name** | `ComputeClaimNFT` |
+| **Token name / symbol** | `KryptonDrop Compute Claim` / `CLAIM` |
+| **Contract address** | [`0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64`](https://testnet.monadscan.com/address/0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64) |
+| **MonadScan (live public page)** | [testnet.monadscan.com/address/0x7af7C765…b35bCb64](https://testnet.monadscan.com/address/0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64) |
+| **Monad Explorer** | [testnet.monadexplorer.com/address/0x7af7C765…b35bCb64](https://testnet.monadexplorer.com/address/0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64) |
+| **Source** | [`contracts/ComputeClaimNFT.sol`](./contracts/ComputeClaimNFT.sol) |
+| **Deploy script** | `pnpm nft:deploy` → [`scripts/deploy-nft.ts`](./scripts/deploy-nft.ts) |
+| **Minter (backend)** | [`0xd000Bc1aD626D4beBB833283d30F91A19a6cD732`](https://testnet.monadscan.com/address/0xd000Bc1aD626D4beBB833283d30F91A19a6cD732) |
+
+Env vars used by the app (already set on the demo host):
+
+```ini
+NFT_CONTRACT_ADDRESS="0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64"
+NEXT_PUBLIC_NFT_CONTRACT_ADDRESS="0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64"
+```
+
+---
+
 ## 📖 Table of Contents
-1. [Key Features](#-key-features)
-2. [How It Works (Under the Hood)](#-how-it-works-under-the-hood)
-3. [System Architecture](#-system-architecture)
-4. [Tech Stack](#-tech-stack)
-5. [Directory Layout](#-directory-layout)
-6. [Prerequisites](#-prerequisites)
-7. [Step-by-Step Installation & Setup](#-step-by-step-installation--setup)
-8. [Running the Application](#-running-the-application)
-9. [The Drop Lifecycle & State Machine](#-the-drop-lifecycle--state-machine)
-10. [Model Context Protocol (MCP) API Reference](#-model-context-protocol-mcp-api-reference)
-11. [Troubleshooting & FAQs](#-troubleshooting--faqs)
+1. [Live public page & deployed contract](#-live-public-page--deployed-contract)
+2. [Key Features](#-key-features)
+3. [How It Works (Under the Hood)](#-how-it-works-under-the-hood)
+4. [System Architecture](#-system-architecture)
+5. [Tech Stack](#-tech-stack)
+6. [Directory Layout](#-directory-layout)
+7. [Prerequisites](#-prerequisites)
+8. [Step-by-Step Installation & Setup](#-step-by-step-installation--setup)
+9. [Running the Application](#-running-the-application)
+10. [The Drop Lifecycle & State Machine](#-the-drop-lifecycle--state-machine)
+11. [Model Context Protocol (MCP) API Reference](#-model-context-protocol-mcp-api-reference)
+12. [Troubleshooting & FAQs](#-troubleshooting--faqs)
 
 ---
 
@@ -137,9 +174,13 @@ KryptonDrop is a high-performance, bot-proof trustless per-second GPU compute re
 │   ├── settlement.service.ts  # Token balance checking and transaction settlements on Monad
 │   └── wallets.ts             # Demo wallet mapping (private keys are secured on the server)
 │
+├── contracts/                 # On-chain Solidity
+│   └── ComputeClaimNFT.sol    # ERC-721 claim voucher (live on Monad Testnet)
+│
 ├── scripts/                   # CLI scripts for demo configurations & testing
 │   ├── agent-bot.ts           # Runs an autonomous AI bot bidding loop simulating a user agent
 │   ├── check-balances.ts      # Fast check of Monad Testnet wallet balances (gas & MON)
+│   ├── deploy-nft.ts          # Compiles + deploys ComputeClaimNFT to Monad Testnet
 │   ├── launch-demo.ts         # Demolishes previous entries & seeds drops with fresh relative count-downs
 │   ├── mcp-stdio-server.ts    # Local Stdio fallback version of the MCP Server
 │   └── setup-claude-mcp.ts    # Script to configure Claude Desktop's config file automatically
@@ -200,6 +241,10 @@ DEMO_HUMAN_PK="0x..." # The wallet address representing the human browser user
 DEMO_AGENT1_PK="0x..." # Authorized agent 1 private key
 DEMO_AGENT2_PK="0x..." # Authorized agent 2 private key
 RECEIVER_ADDRESS="0x..." # The merchant wallet that receives payment for the GPU compute
+
+# ComputeClaimNFT — deployed on Monad Testnet (chain 10143)
+NFT_CONTRACT_ADDRESS="0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64"
+NEXT_PUBLIC_NFT_CONTRACT_ADDRESS="0x7af7C765F53fac5C6B95FC099f75E8B2b35bCb64"
 
 # Default Strategic Rules for Autonomous AI Agent Bidding
 AGENT_MAX_BUDGET_USDC="1000"
