@@ -1,0 +1,31 @@
+# Git
+.git
+.gitignore
+
+# Deps & build artifacts (rebuilt inside the image)
+node_modules
+.next
+dist
+build
+out
+
+# Secrets — must never enter the image
+secret_keys
+demo_wallets.md
+.env
+.env.*
+*.key
+*.pem
+
+# Loop runtime + tooling
+.ralph
+.claude
+.mcp.json
+
+# Editor / OS cruft
+.DS_Store
+*.tsbuildinfo
+
+# Docs not needed at runtime
+*.md
+webinspo
